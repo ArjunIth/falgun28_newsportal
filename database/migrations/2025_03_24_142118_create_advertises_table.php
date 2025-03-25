@@ -11,15 +11,14 @@ return new class extends Migration
      */
     public function up(): void
     {
-        Schema::create('articles', function (Blueprint $table) {
+        Schema::create('advertises', function (Blueprint $table) {
             $table->id();
-            $table->string('title');
+            $table->string('company_name');
+            $table->string('contact');
+            $table->date('expire_date');
             $table->string('image');
-            $table->longText('content');
-            $table->integer('views')->default(0);
-            $table->string('status')->default("pending");
-            $table->longText('meta_keywords')->nullable();
-            $table->longText('meta_description')->nullable();
+            $table->string('redirect_url');
+            $table->enum('location',['header','home','category','article']);
             $table->timestamps();
         });
     }
@@ -29,6 +28,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('articles');
+        Schema::dropIfExists('advertises');
     }
 };
